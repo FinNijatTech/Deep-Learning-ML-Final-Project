@@ -147,29 +147,28 @@ y_test =  test_data['Adj Close']
 
 """**KNN**"""
 
-# Commented out IPython magic to ensure Python compatibility.
-# %%time
-# 
-# from sklearn.model_selection import GridSearchCV
-# from sklearn.neighbors import KNeighborsClassifier
-# 
-# knn = KNeighborsClassifier()
-# 
-# param_grid = {
-#     'n_neighbors': [3, 5, 7, 9],
-#     'weights': ['uniform', 'distance'],
-#     'p': [1, 2]
-# }
-# 
-# knn_grid = GridSearchCV(knn, param_grid, cv=5, scoring='accuracy')
-# 
-# knn_grid.fit(x_train, y_train)
-# 
-# best_knn_params = knn_grid.best_params_
-# best_knn_score = knn_grid.best_score_
-# 
-# print("Best hyperparameters for KNN:", best_knn_params)
-# print("Best accuracy score for KNN:", best_knn_score)
+%%time
+
+from sklearn.model_selection import GridSearchCV
+from sklearn.neighbors import KNeighborsClassifier
+
+knn = KNeighborsClassifier()
+
+param_grid = {
+    'n_neighbors': [3, 5, 7, 9],
+    'weights': ['uniform', 'distance'],
+    'p': [1, 2]
+}
+
+knn_grid = GridSearchCV(knn, param_grid, cv=5, scoring='accuracy')
+
+knn_grid.fit(x_train, y_train)
+
+best_knn_params = knn_grid.best_params_
+best_knn_score = knn_grid.best_score_
+
+print("Best hyperparameters for KNN:", best_knn_params)
+print("Best accuracy score for KNN:", best_knn_score)
 
 knn = KNeighborsClassifier(n_neighbors= 5, p= 1, weights='uniform')
 knn.fit(x_train, y_train)
@@ -195,26 +194,25 @@ plt.show()
 
 """**ADA Boosting**"""
 
-# Commented out IPython magic to ensure Python compatibility.
-# %%time
-# 
-# from sklearn.model_selection import GridSearchCV
-# from sklearn.ensemble import AdaBoostClassifier
-# 
-# # AdaBoost
-# adaboost = AdaBoostClassifier()
-# param_grid_adaboost = {
-#     'n_estimators': [50, 100, 150],
-#     'learning_rate': [0.01, 0.1, 0.2]
-# }
-# 
-# adaboost_grid = GridSearchCV(adaboost, param_grid_adaboost, cv=5, scoring='f1')
-# adaboost_grid.fit(x_train, y_train)
-# best_adaboost_params = adaboost_grid.best_params_
-# best_adaboost_score = adaboost_grid.best_score_
-# 
-# print("Best hyperparameters for AdaBoost:", best_adaboost_params)
-# print("Best f1 score for AdaBoost:", best_adaboost_score)
+%%time
+
+from sklearn.model_selection import GridSearchCV
+from sklearn.ensemble import AdaBoostClassifier
+
+# AdaBoost
+adaboost = AdaBoostClassifier()
+param_grid_adaboost = {
+    'n_estimators': [50, 100, 150],
+    'learning_rate': [0.01, 0.1, 0.2]
+}
+
+adaboost_grid = GridSearchCV(adaboost, param_grid_adaboost, cv=5, scoring='f1')
+adaboost_grid.fit(x_train, y_train)
+best_adaboost_params = adaboost_grid.best_params_
+best_adaboost_score = adaboost_grid.best_score_
+
+print("Best hyperparameters for AdaBoost:", best_adaboost_params)
+print("Best f1 score for AdaBoost:", best_adaboost_score)
 
 ada = AdaBoostClassifier(n_estimators=150, learning_rate=0.2)
 ada.fit(x_train, y_train)
